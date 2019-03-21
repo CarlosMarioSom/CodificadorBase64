@@ -1,0 +1,1 @@
+CodificadorBase64
