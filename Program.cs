@@ -26,17 +26,23 @@ namespace CodificadorBase64
                 if (Argumentos.Entrada != "" && Argumentos.Salida != "" && Argumentos.Accion != "")
                 {
                     string outputMessage = "";
+                    
                     /* ---- Codifica ---- */
                     if (Argumentos.Accion == "c")
                     {
 
                     }
+                    
                     /* ---- Decodifica ---- */
                     else if (Argumentos.Accion == "d")
                     {
                         Decoding decoding = new Decoding(Argumentos);
                         outputMessage = decoding.decodingFile();
                     }
+
+                    /* ---- Mensaje de salida ---- */
+                    Message mensaje = new Message(Argumentos, outputMessage);
+                    outputMessage = mensaje.getMessage();
                     Console.WriteLine(outputMessage);
                     return;
                 }

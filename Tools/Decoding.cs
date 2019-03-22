@@ -20,7 +20,15 @@ public class Decoding
         string line = file.ReadLine();
         for (int i = 0; i < line.Length; i++)
         {
-            message += getDecodingNumber(line[i]) + "\n";
+            string decodedNumber = this.getDecodingNumber(line[i]);
+            string binaryFileContent = ""; // AQUI SE ALMACENA TODO EL NUMERO BINARIO DEL ARCHIVO
+            /* Report incorrect format */
+            if (decodedNumber == "-1")
+            {
+                message = "\n***ERROR***\nEl archivo a codificar '" + this.Argumentos.Entrada + "' no corresponde a un archivo base64 o está dañado\n";
+                break;
+            }
+            binaryFileContent += decodedNumber;
         }
 
         return message;
@@ -29,8 +37,15 @@ public class Decoding
     private string getDecodingNumber(char encodingNumber)
     {
         int valueOf6Bit = this.getValueOf6Bits(encodingNumber);
-        string binaryNumber = getBinaryNumber(valueOf6Bit);
+        string binaryNumber = this.getBinaryNumber(valueOf6Bit);
         string decodeNumber = this.formatBinaryNumber(binaryNumber);
+
+        /* Verify incorrect format */
+        if (valueOf6Bit == -1)
+        {
+            decodeNumber = "-1";
+        }
+
         return decodeNumber;
     }
 
@@ -39,7 +54,7 @@ public class Decoding
         string decodeNumber = binaryNumber;
         if (binaryNumber.Length != 6)
         {
-            for (int i = binaryNumber.Length ; i < 6 ; i++)
+            for (int i = binaryNumber.Length; i < 6; i++)
             {
                 decodeNumber = "0" + decodeNumber;
             }
@@ -260,6 +275,9 @@ public class Decoding
                 break;
             case '=':
                 valueOf6Bit = 64;
+                break;
+            default:
+                valueOf6Bit = -1;
                 break;
         }
         return valueOf6Bit;
