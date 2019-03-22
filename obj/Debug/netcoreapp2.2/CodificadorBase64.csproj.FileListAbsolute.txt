@@ -1,0 +1,11 @@
+/home/carlosmariosom/Documents/CodificadorBase64/bin/Debug/netcoreapp2.2/CodificadorBase64.deps.json
+/home/carlosmariosom/Documents/CodificadorBase64/bin/Debug/netcoreapp2.2/CodificadorBase64.runtimeconfig.json
+/home/carlosmariosom/Documents/CodificadorBase64/bin/Debug/netcoreapp2.2/CodificadorBase64.runtimeconfig.dev.json
+/home/carlosmariosom/Documents/CodificadorBase64/bin/Debug/netcoreapp2.2/CodificadorBase64.dll
+/home/carlosmariosom/Documents/CodificadorBase64/bin/Debug/netcoreapp2.2/CodificadorBase64.pdb
+/home/carlosmariosom/Documents/CodificadorBase64/obj/Debug/netcoreapp2.2/CodificadorBase64.csprojAssemblyReference.cache
+/home/carlosmariosom/Documents/CodificadorBase64/obj/Debug/netcoreapp2.2/CodificadorBase64.csproj.CoreCompileInputs.cache
+/home/carlosmariosom/Documents/CodificadorBase64/obj/Debug/netcoreapp2.2/CodificadorBase64.AssemblyInfoInputs.cache
+/home/carlosmariosom/Documents/CodificadorBase64/obj/Debug/netcoreapp2.2/CodificadorBase64.AssemblyInfo.cs
+/home/carlosmariosom/Documents/CodificadorBase64/obj/Debug/netcoreapp2.2/CodificadorBase64.dll
+/home/carlosmariosom/Documents/CodificadorBase64/obj/Debug/netcoreapp2.2/CodificadorBase64.pdb
