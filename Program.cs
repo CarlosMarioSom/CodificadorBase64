@@ -25,6 +25,7 @@ namespace CodificadorBase64
                 /* ---- ---- ---- ---- Acepta comando ingresado ---- ---- ---- ---- */
                 if (Argumentos.Entrada != "" && Argumentos.Salida != "" && Argumentos.Accion != "")
                 {
+                    string outputMessage = "";
                     /* ---- Codifica ---- */
                     if (Argumentos.Accion == "c")
                     {
@@ -33,8 +34,11 @@ namespace CodificadorBase64
                     /* ---- Decodifica ---- */
                     else if (Argumentos.Accion == "d")
                     {
-
+                        Decoding decoding = new Decoding(Argumentos);
+                        outputMessage = decoding.decodingFile();
                     }
+                    Console.WriteLine(outputMessage);
+                    return;
                 }
                 /* ---- ---- ---- ---- Rechaza comando ingresado ---- ---- ---- ---- */
                 else
