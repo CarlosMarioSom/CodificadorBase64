@@ -1,4 +1,6 @@
 using System;
+using System.Numerics;
+using System.IO;
 public class Decoding
 {
     /// ATRIBUTOS
@@ -14,24 +16,72 @@ public class Decoding
     public string decodingFile()
     {
         string message = "";
+        string binaryFileContent = ""; // AQUI SE ALMACENA TODO EL NUMERO BINARIO DEL ARCHIVO
 
         // Read line of file
         System.IO.StreamReader file = new System.IO.StreamReader(this.Argumentos.Entrada);
-        string line = file.ReadLine();
-        for (int i = 0; i < line.Length; i++)
+        string line = "";
+        while ((line = file.ReadLine()) != null)
         {
-            string decodedNumber = this.getDecodingNumber(line[i]);
-            string binaryFileContent = ""; // AQUI SE ALMACENA TODO EL NUMERO BINARIO DEL ARCHIVO
-            /* Report incorrect format */
-            if (decodedNumber == "-1")
+
+            for (int i = 0; i < line.Length; i++)
             {
-                message = "\n***ERROR***\nEl archivo a codificar '" + this.Argumentos.Entrada + "' no corresponde a un archivo base64 o está dañado\n";
-                break;
+                /* Ignora simbolo de relleno = */
+                if (line[i] == '=')
+                {
+                    continue;
+                }
+
+                string decodedNumber = this.getDecodingNumber(line[i]);
+
+                /* Detecta formato incorrecto */
+                if (decodedNumber == "-1")
+                {
+                    message = "\n***ERROR***\nEl archivo a codificar '" + this.Argumentos.Entrada + "' no corresponde a un archivo base64 o está dañado\n";
+                    return message;
+                }
+                binaryFileContent += decodedNumber;
             }
-            binaryFileContent += decodedNumber;
+        }
+
+        /* Si hubo un error al crear el archivo */
+        string errorMessage = this.createFile(binaryFileContent);
+        if (errorMessage != "")
+        {
+            message = "\n***ERROR***\nHubo un error al crear el archivo '" + this.Argumentos.Salida + "\n" + "Mensaje de error: " + errorMessage + "\n";
         }
 
         return message;
+    }
+
+    private string createFile(string binaryFileContent)
+    {
+        byte[] bytes = this.binaryStrToBytes(binaryFileContent);
+        try
+        {
+            using (Stream file = File.OpenWrite(this.Argumentos.Salida))
+            {
+                file.Write(bytes, 0, bytes.Length);
+            }
+        }
+        catch (Exception ex)
+        {
+            return "" + ex;
+        }
+
+
+        return "";
+    }
+
+    private byte[] binaryStrToBytes(string binaryFileContent)
+    {
+        int numberOfBytes = binaryFileContent.Length / 8;
+        byte[] bytes = new byte[numberOfBytes]; // Aqui queda el arreglo de bytes que componen el archivo
+        for (int i = 0; i < numberOfBytes; ++i)
+        {
+            bytes[i] = Convert.ToByte(binaryFileContent.Substring(8 * i, 8), 2);
+        }
+        return bytes;
     }
 
     private string getDecodingNumber(char encodingNumber)
