@@ -4,7 +4,7 @@ using System.IO;
 public class Decoding
 {
     /// ATRIBUTOS
-    Arguments_Entity Argumentos;
+    private Arguments_Entity Argumentos;
 
     /// CONSTRUCTORES
     public Decoding(Arguments_Entity Argumentos)

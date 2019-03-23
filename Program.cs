@@ -30,7 +30,8 @@ namespace CodificadorBase64
                     /* ---- Codifica ---- */
                     if (Argumentos.Accion == "c")
                     {
-
+                        Encoding encoding = new Encoding(Argumentos);
+                        outputMessage = encoding.encodingFile();
                     }
                     
                     /* ---- Decodifica ---- */

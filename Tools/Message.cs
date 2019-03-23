@@ -1,8 +1,8 @@
 public class Message
 {
     /// ATRIBUTOS
-    Arguments_Entity Argumentos;
-    string Mensaje;
+    private Arguments_Entity Argumentos;
+    private string Mensaje;
 
     /// CONSTRUCTORES
     public Message(Arguments_Entity argumentos, string mensaje)
