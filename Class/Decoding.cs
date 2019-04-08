@@ -327,6 +327,7 @@ public class Decoding
                 valueOf6Bit = 64;
                 break;
             default:
+                Console.WriteLine("Caracter incorrecto: ->" + encodingNumber + "<-");
                 valueOf6Bit = -1;
                 break;
         }
