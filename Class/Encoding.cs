@@ -62,7 +62,24 @@ public class Encoding
             message = "\n***ERROR***\nSe encontró un valor no válido para codificar en Base64\n";
         }
 
-        Console.WriteLine(codedFile);
+        /* Crear archivo final */
+        message = this.createCodedFile(codedFile);
+
+        return message;
+    }
+
+    private string createCodedFile(string codedFile)
+    {
+        string message = "";
+        try
+        {
+            System.IO.File.WriteAllText(this.Argumentos.Salida, codedFile);
+        }
+        catch (Exception ex)
+        {
+            message = "\n***ERROR***\nNo se pudo crear el archivo '" + this.Argumentos.Salida + "'\n\n" + ex;
+        }
+
         return message;
     }
 
